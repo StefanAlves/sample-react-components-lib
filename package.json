@@ -1,0 +1,129 @@
+{
+  "name": "components-lib",
+  "version": "0.0.0-semantic-release",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StefanAlves/sample-react-components-lib.git"
+  },
+  "engines": {
+    "yarn": "^1.4.2"
+  },
+  "peerDependencies": {
+    "lodash": "4.17.10",
+    "prop-types": "^15.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "styled-components": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@semantic-release/changelog": "^3.0.0",
+    "@storybook/addon-actions": "^3.4.11",
+    "@storybook/addon-jest": "^3.4.11",	
+    "@storybook/addon-knobs": "^3.4.11",	    
+    "@storybook/addons": "^3.4.11",	    
+    "@storybook/cli": "^3.4.11",	
+    "@storybook/react": "^3.4.11",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-inline-react-svg": "^1.0.1",
+    "babel-plugin-require-context-hook": "^1.0.0",
+    "commitizen": "^3.0.2",
+    "cz-conventional-changelog": "2.1.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2`.14.0",
+    "husky": "^1.1.1",
+    "immutable": "3.8.2",
+    "jest-styled-components": "^6.2.1",
+    "less": "^3.8.1",
+    "lodash": "4.17.10",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-immutable-proptypes": "^2.1.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "^2.0.4",
+    "react-test-renderer": "^16.5.2",
+    "semantic-release": "^15.9.17",
+    "styled-components": "^3.4.9"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production npx babel src/components -d dist --copy-files",
+    "build:storybook": "npx build-storybook -s public",
+    "copy": "yarn run copy:package",
+    "copy:package": "cp package.json dist/package.json",
+    "pre-deploy": "yarn run build && yarn copy",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf build && rm -rf coverage",
+    "test": "npx react-scripts test --coverage",
+    "commit": "npx git-cz",
+    "semantic-release": "semantic-release --no-ci",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "force": true,
+    "assets": [
+      "package.json",
+      "changelog.md"
+    ],
+    "pkgRoot": "dist",
+    "changelogFile": "changelog.md",
+    "verifyConditions": [
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "generateNotes": [
+      "@semantic-release/release-notes-generator"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "publish": [
+      "@semantic-release/npm"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "env": {
+      "test": {
+        "plugins": ["require-context-hook"]
+      }
+    }
+  },
+  "hooks": {
+    "pre-push": "yarn test"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react-styled-flexbox": "^2.0.0"
+  }
+}

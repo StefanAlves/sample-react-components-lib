@@ -1,0 +1,15 @@
+version: '2'
+services:
+  components-lib:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: components-lib
+    volumes:
+      - './src:/app/src:rw'
+    ports:
+      - '9009:9009'
+    extra_hosts:
+      - 'vm_ip:172.18.0.1'
+    environment:
+      - NODE_ENV=development
